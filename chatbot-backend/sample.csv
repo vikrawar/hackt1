@@ -1,0 +1,23 @@
+s,p,o
+https://gryps.io/KnowledgeGraph.owl#DataProperty/hasCurrency,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#DatatypeProperty
+https://gryps.io/KnowledgeGraph.owl#DataProperty/hasCurrency,http://www.w3.org/2000/01/rdf-schema#comment,"Refers to the currency type that is used in a project or any transactional entities sich as budget, commitment, etc.
+Example: A project has a currency of USD."
+https://gryps.io/KnowledgeGraph.owl#DataProperty/hasCurrency,http://www.w3.org/2000/01/rdf-schema#label,Currency
+https://gryps.io/KnowledgeGraph.owl#DataProperty/hasCurrency,https://gryps.io/KnowledgeGraph.owl#AnnotationProperty/displayType,string
+https://gryps.io/KnowledgeGraph.owl#DataProperty/hasCurrency,https://gryps.io/KnowledgeGraph.owl#AnnotationProperty/displaySize,3
+https://gryps.io/KnowledgeGraph.owl#DataProperty/hasCurrency,https://gryps.io/KnowledgeGraph.owl#AnnotationProperty/filterCategory,Financial Information
+https://gryps.io/KnowledgeGraph.owl#DataProperty/isDeliveredOn,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#DatatypeProperty
+https://gryps.io/KnowledgeGraph.owl#DataProperty/isDeliveredOn,http://www.w3.org/2000/01/rdf-schema#comment,"The delivering date of the entity (e.g., submittal).
+Example: A submittal is delivered on 2010-07-08T00:00:00.000Z"
+https://gryps.io/KnowledgeGraph.owl#DataProperty/isDeliveredOn,http://www.w3.org/2000/01/rdf-schema#range,http://www.w3.org/2001/XMLSchema#dateTime
+https://gryps.io/KnowledgeGraph.owl#DataProperty/isDeliveredOn,http://www.w3.org/2000/01/rdf-schema#label,Delivered On
+https://gryps.io/KnowledgeGraph.owl#DataProperty/isDeliveredOn,https://gryps.io/KnowledgeGraph.owl#AnnotationProperty/displayType,date
+https://gryps.io/KnowledgeGraph.owl#DataProperty/isDeliveredOn,https://gryps.io/KnowledgeGraph.owl#AnnotationProperty/displaySize,3
+https://gryps.io/KnowledgeGraph.owl#DataProperty/isDeliveredOn,https://gryps.io/KnowledgeGraph.owl#AnnotationProperty/filterCategory,Dates and Times
+https://gryps.io/KnowledgeGraph.owl#Individual/File/DOB_BIS/CO%20099247,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://gryps.io/KnowledgeGraph.owl#Class/File
+https://gryps.io/KnowledgeGraph.owl#Individual/File/DOB_BIS/CO%20099247,https://gryps.io/KnowledgeGraph.owl#DataProperty/hasName,M00099247C.PDF
+https://gryps.io/KnowledgeGraph.owl#Individual/File/DOB_BIS/CO%20099247,https://gryps.io/KnowledgeGraph.owl#DataProperty/hasSourceSystem,DOB BIS
+https://gryps.io/KnowledgeGraph.owl#Individual/File/DOB_BIS/CO%20099247,https://gryps.io/KnowledgeGraph.owl#ObjectProperty/isAssociatedWith,https://gryps.io/KnowledgeGraph.owl#Individual/Building/DOB_BIS/1023449
+https://gryps.io/KnowledgeGraph.owl#Individual/File/DOB_BIS/CO%20099247,https://gryps.io/KnowledgeGraph.owl#DataProperty/hasID,CO 099247
+https://gryps.io/KnowledgeGraph.owl#Individual/File/DOB_BIS/CO%20099247,https://gryps.io/KnowledgeGraph.owl#DataProperty/hasGrypsUpdatedAt,2025-01-23T18:10:12.244Z
+https://gryps.io/KnowledgeGraph.owl#Individual/File/DOB_BIS/CO%20099247,https://gryps.io/KnowledgeGraph.owl#DataProperty/hasGrypsLink,https://demo.gryps.io/#/documents?key=dob_bis/25fb238d677abc4c8fffa08adaf00d9b.pdf
