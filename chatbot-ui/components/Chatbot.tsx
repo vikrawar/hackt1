@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { LuSend, LuRefreshCw } from 'react-icons/lu';
+import { LuSend, LuRefreshCw, LuUpload } from 'react-icons/lu';
 
 interface Message {
   id: string;
@@ -16,6 +16,7 @@ export default function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -45,7 +46,7 @@ export default function Chatbot() {
         headers: {
           'Content-Type': 'application/json'
         },
-       body: JSON.stringify({ query: input })
+       body: JSON.stringify({ "input_text": input })
       });
 
       const data = await response.json();
@@ -60,6 +61,34 @@ export default function Chatbot() {
       console.error('Error sending message', error);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleFileUpload = async () => {
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await fetch('http://localhost:8000/upload_file', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        console.log('File uploaded successfully');
+      } else {
+        console.error('Error uploading file');
+      }
+    } catch (error) {
+      console.error('Error uploading file', error);
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setFile(e.target.files[0]);
     }
   };
 
@@ -124,6 +153,25 @@ export default function Chatbot() {
               disabled={input.trim() === '' || isLoading}
             >
               <LuSend className="mr-2 h-4 w-4" /> Send
+            </Button>
+            <input 
+              type="file" 
+              onChange={handleFileChange} 
+              className="hidden" 
+              id="file-upload"
+            />
+            <Button 
+              variant="outline" 
+              size="icon" 
+              onClick={() => document.getElementById('file-upload')?.click()}
+            >
+              <LuUpload className="h-4 w-4" />
+            </Button>
+            <Button 
+              onClick={handleFileUpload} 
+              disabled={!file}
+            >
+              Upload
             </Button>
           </div>
         </CardFooter>
