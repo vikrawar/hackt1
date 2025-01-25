@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 with open('sample.csv', 'r') as f:
     csv_string = f.read()
@@ -40,11 +41,27 @@ def ask_gemini(prompt, api_key):
 
 app = FastAPI()
 
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
+
 class Query(BaseModel):
+    pdf_url: str | None
     input_text: str
 
 @app.post("/query")
 async def query_llm(query: Query):
-    gemini_response = ask_gemini('What is the display type of the hasCurrency property?', api_key)
+    gemini_response = ask_gemini(query.input_text, api_key)
+    
+    if query.pdf_url:
+        openai_response = ask_openai(query.pdf_url)
     
     return {"response": gemini_response}
+
+def random():
+    return "hello"
