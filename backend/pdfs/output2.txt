@@ -1,0 +1,34 @@
+
+Here is the extracted information from the image:
+
+### Certificate of Occupancy
+- **Job Number:** ALT: 102172934
+- **Borough:** Manhattan
+- **Date:** September 9, 2003
+- **Original Certificate Number:** 102172934-T
+- **Zoning District:** C6-6
+- **Address:** 881 Seventh Avenue
+- **Block:** 1009
+- **Lot:** 1
+
+### Permissible Use and Occupancy
+- **Story:** 
+  - **Sub-Cellar**
+    - **Live Load:** O.G.
+    - **Maximum No. of Persons Permitted:** 635
+    - **Zoning Use Group:** 8
+    - **Building Code:** F-1B/F-4
+    - **Description of Use:** Concert Hall/Banquet Hall, Elev. Mach. Room, Mech. Rooms, Storage Room, Dressing Room
+
+  - **Cellar**
+    - **Live Load:** 85
+    - **Maximum No. of Persons Permitted:** 
+      - 10
+      - 21
+      - 175
+    - **Zoning Use Group:** F-1B
+    - **Description of Use:** Mechanical Rooms, Office, Dressing Rooms, Elev. Mach. Room, Storage Rooms, Balcony
+
+### Additional Information
+- **Certificate Status:** Temporary Certificate of Occupancy
+- **Terms:** Ninety (90) days

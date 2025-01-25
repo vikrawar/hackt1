@@ -1,0 +1,38 @@
+
+Here is the extracted information from the image:
+
+**Document Title:**
+- Certificate of Occupancy
+
+**Department:**
+- Department of Buildings, City of New York
+
+**Borough:** 
+- Manhattan
+
+**Certificate Number:**
+- 81260
+
+**Date:** 
+- Not specified
+
+**Zoning District:**
+- C 6-2
+
+**Address:**
+- 4 Pern Plaza
+
+**Block:**
+- 781
+
+**Lot:**
+- 1
+
+**Permissible Use and Occupancy:**
+
+| Story | Live Load | Max No. | Zoning Code | Building Code | Description of Use |
+|-------|-----------|---------|-------------|----------------|---------------------|
+| 1     | 100       | 400     | 100         | 250            | Restaurant, Offices, Dressing Rooms, Locker Rooms, Storage, Forum (Auditor), Basketball, Boxing, Tennis, Dance, Loading (Truck) Area, Accessory Parking (14 motor vehicles), Mechanical Equipment Rooms, Orchestra, Sports, Cinema |
+| 2     | 100       | 150     | 100         | 75             | Balcony, Cinema, MSG Ticket Lobby, Snack Bar, Security Room |
+| 3     | 100       | 500     | 125         | 100            | Bowling, Mechanical Equipment Rooms, Art Gallery & Museum |
+| 4     | 100       | 75      | 300         |                 |
