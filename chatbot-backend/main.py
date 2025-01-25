@@ -30,7 +30,7 @@ def ask_gemini(prompt, api_key):
         model = genai.GenerativeModel('gemini-pro')
 
         # Generate a response
-        response = model.generate_content(text + prompt)
+        response = model.generate_content(text + pdf_data + prompt)
 
         # Return the text response from the model
         return response.text
@@ -51,15 +51,11 @@ app.add_middleware(
 )
 
 class Query(BaseModel):
-    pdf_url: str | None
     input_text: str
 
 @app.post("/query")
 async def query_llm(query: Query):
     gemini_response = ask_gemini(query.input_text, api_key)
-    
-    if query.pdf_url:
-        openai_response = ask_openai(query.pdf_url)
     
     return {"response": gemini_response}
 
