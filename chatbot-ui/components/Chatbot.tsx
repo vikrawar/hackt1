@@ -40,11 +40,18 @@ export default function Chatbot() {
     setIsLoading(true);
 
     try {
-      // Simulated bot response - replace with actual API call
-      const botResponse = await simulateBotResponse(input);
+      const response = await fetch('http://localhost:8000/query', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+       body: JSON.stringify({ query: input })
+      });
+
+      const data = await response.json();
       const newBotMessage: Message = {
         id: `bot-${Date.now()}`,
-        content: botResponse,
+        content: data.response,
         sender: 'bot'
       };
 
@@ -54,14 +61,6 @@ export default function Chatbot() {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const simulateBotResponse = (userMessage: string): Promise<string> => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(`I received: "${userMessage}"`);
-      }, 1000);
-    });
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
