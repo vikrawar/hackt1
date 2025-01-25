@@ -4,7 +4,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { LuSend, LuRefreshCw, LuUpload } from 'react-icons/lu';
+import { LuSend, LuRefreshCw } from 'react-icons/lu';
+import { motion } from 'framer-motion';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 interface Message {
   id: string;
@@ -16,7 +18,6 @@ export default function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [file, setFile] = useState<File | null>(null);
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -63,35 +64,7 @@ export default function Chatbot() {
       setIsLoading(false);
     }
   };
-
-  const handleFileUpload = async () => {
-    if (!file) return;
-
-    const formData = new FormData();
-    formData.append('file', file);
-
-    try {
-      const response = await fetch('http://localhost:8000/upload_file', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (response.ok) {
-        console.log('File uploaded successfully');
-      } else {
-        console.error('Error uploading file');
-      }
-    } catch (error) {
-      console.error('Error uploading file', error);
-    }
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setFile(e.target.files[0]);
-    }
-  };
-
+  
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -104,18 +77,21 @@ export default function Chatbot() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <Card className="w-full max-w-md h-[600px] flex flex-col">
-        <CardContent className="flex-grow overflow-y-auto p-4 space-y-4">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+      <Card className="w-full max-w-md h-[600px] flex flex-col shadow-lg rounded-lg overflow-hidden">
+        <CardContent className="flex-grow overflow-y-auto p-4 space-y-4 bg-white">
           {messages.map((message) => (
-            <div 
+            <motion.div 
               key={message.id} 
               className={`flex ${
                 message.sender === 'user' ? 'justify-end' : 'justify-start'
               }`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
             >
               <div 
-                className={`max-w-[80%] p-3 rounded-lg ${
+                className={`max-w-[80%] p-3 rounded-lg shadow-md ${
                   message.sender === 'user' 
                     ? 'bg-blue-500 text-white' 
                     : 'bg-gray-200 text-black'
@@ -123,18 +99,32 @@ export default function Chatbot() {
               >
                 {message.content}
               </div>
-            </div>
+            </motion.div>
           ))}
+          {isLoading && (
+            <motion.div 
+              className="flex justify-start"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="max-w-[80%] p-3 rounded-lg shadow-md bg-gray-200 text-black flex items-center">
+                <AiOutlineLoading3Quarters className="animate-spin mr-2" />
+                Thinking...
+              </div>
+            </motion.div>
+          )}
           <div ref={messagesEndRef} />
         </CardContent>
         
-        <CardFooter className="border-t p-4">
+        <CardFooter className="border-t p-4 bg-gray-100">
           <div className="flex space-x-2 w-full">
             <Button 
               variant="outline" 
               size="icon" 
               onClick={clearChat}
               disabled={messages.length === 0}
+              className="hover:bg-red-500 hover:text-white transition-colors"
             >
               <LuRefreshCw className="h-4 w-4" />
             </Button>
@@ -151,27 +141,9 @@ export default function Chatbot() {
             <Button 
               onClick={handleSendMessage} 
               disabled={input.trim() === '' || isLoading}
+              className="hover:bg-green-500 hover:text-white transition-colors"
             >
               <LuSend className="mr-2 h-4 w-4" /> Send
-            </Button>
-            <input 
-              type="file" 
-              onChange={handleFileChange} 
-              className="hidden" 
-              id="file-upload"
-            />
-            <Button 
-              variant="outline" 
-              size="icon" 
-              onClick={() => document.getElementById('file-upload')?.click()}
-            >
-              <LuUpload className="h-4 w-4" />
-            </Button>
-            <Button 
-              onClick={handleFileUpload} 
-              disabled={!file}
-            >
-              Upload
             </Button>
           </div>
         </CardFooter>
